@@ -14,10 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome dasd ');
-// });
 
-Route::get('showprofile',[
+
+Route::get('/',[
     HomeController::class, 'showprofile'
 ] );
