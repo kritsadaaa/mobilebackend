@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -13,27 +14,17 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
+        DB::table('users')->insert(
             [
-                'name'=>'kritsada',
-                'password'=>md5('123'),
-                'email'=>'krti@gmail.com',
-                'address'=>'tsu',
-                "telephone"=>'088888888',
-            ],[
-                'name'=>'krit',
-                'password'=>md5('123'),
-                'email'=>'krt@gmail.com',
-                'address'=>'tsu',
-                "telephone"=>'088778888',
-            ],[
-                'name'=>'sada',
-                'password'=>md5('123'),
-                'email'=>'ti@gmail.com',
-                'address'=>'tsu',
-                "telephone"=>'0881234888',
-            ],
-        ]);
-        //
+                [
+                    "name" => "Nut",
+                    "email" => "n@gmail.com",
+                    "password" => Hash::make('123456'),
+                    "telephone" => "099999999",
+                    "created_at" => Carbon::now(),
+                    "updated_at" => Carbon::now(),
+                ],
+            ]
+        );
     }
 }

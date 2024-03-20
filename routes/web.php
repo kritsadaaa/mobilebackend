@@ -14,8 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
-Route::get('/',[
-    HomeController::class, 'showprofile'
-] );
+Route::get('/', function () {
+    return "Hello CSIT";
+});
+
+Route::get('profile' ,[HomeController ::class ,"showprofile"]
+);

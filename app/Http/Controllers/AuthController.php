@@ -8,15 +8,17 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function register(Request $request)
     {
         $fileds = $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|unique:users,email',
             'password' => 'required|string|confirmed',
-            'address' => 'required|string',
-            'telephone' => 'required|string|max:10',
-            
+            // 'address' => 'required|string',
+            'telephone' => 'required|string',
             'role' => 'required|integer',
         ]);
 
@@ -24,15 +26,15 @@ class AuthController extends Controller
             'name' => $fileds['name'],
             'email' => $fileds['email'],
             'password' => bcrypt($fileds['password']),
-            'address'=> $fileds['address'],
+            // 'address' => $fileds['address'],
             'telephone' => $fileds['telephone'],
             'role' => $fileds['role'],
         ]);
-        $token = $user->createToken($request->userAgent(), [$fileds['role']])->plainTextToken;
 
+        $token = $user->createToken($request->userAgent(), [$fileds['role']])->plainTextToken;
         $reponse = [
             'user' => $user,
-            'token' => $token,
+            'token' => $token
         ];
         return response($reponse, 201);
     }
@@ -63,6 +65,7 @@ class AuthController extends Controller
             return response($reponse, 200);
         }
     }
+
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
@@ -70,6 +73,4 @@ class AuthController extends Controller
             'message' => 'Logged Out',
         ], 200);
     }
-
 }
-
